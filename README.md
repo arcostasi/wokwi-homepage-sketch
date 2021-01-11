@@ -2,7 +2,7 @@
 
 ## How to use
 
-Download [or clone the repo](https://github.com/arcostasi/wokwi-sketches):
+Download [or clone the repo](https://github.com/arcostasi/wokwi-homepage-sketch):
 
 Install it and run:
 
@@ -10,4 +10,3 @@ Install it and run:
 npm install
 npm run dev
 ```
-"# wokwi-homepage-sketch" 

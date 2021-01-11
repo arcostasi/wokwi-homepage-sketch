@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     margin: theme.spacing(4, 0, 2),
   },
+  formGroup: {
+    alignItems: 'right'
+  }
 }));
 
 function generate(element: any) {
@@ -54,19 +57,19 @@ export default function InteractiveList() {
       <MenuAppBar/>
       <Box my={10}>
         <div className={classes.root}>
-          <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
-              }
-              label="Enable dense"
-            />
-          </FormGroup>
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} md={6}>
               <Typography variant="h6" className={classes.title}>
                 Your projects
               </Typography>
+              <FormGroup row>
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
+                  }
+                  label="Enable dense"
+                />
+              </FormGroup>
               <div className={classes.demo}>
                 <List dense={dense}>
                   {generate(
