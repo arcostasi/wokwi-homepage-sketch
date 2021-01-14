@@ -8,16 +8,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import TablePagination from "@material-ui/core/TablePagination";
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import FolderIcon from '@material-ui/icons/Folder';
+import CodeIcon from '@material-ui/icons/Code';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import MenuAppBar from '../src/Menu';
+import Search from '../src/Search';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +34,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function generate(element: any) {
-  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) =>
+  const list = [...Array(50).keys()];
+  const data = paginate(list, 5, 10);
+  return data.map((value) =>
     React.cloneElement(element, {
       key: value,
     }),
   );
+}
+
+function paginate(array: any, index: number, size: number) {
+  // Transform values
+  index = Math.abs(index);
+  index = index > 0 ? index - 1 : index;
+  size = size < 1 ? 1 : size;
+
+  // Filter
+  return [...(array.filter((value: any, n: number) => {
+    return (n >= (index * size)) && (n < ((index+1) * size))
+  }))]
 }
 
 function getRandomInt(min: number, max: number) {
@@ -50,33 +63,27 @@ function getRandomInt(min: number, max: number) {
 
 export default function InteractiveList() {
   const classes = useStyles();
-  const [dense, setDense] = React.useState(false);
 
   return (
     <Container maxWidth="xl">
       <MenuAppBar/>
-      <Box my={10}>
+      <Box my={8}>
         <div className={classes.root}>
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} md={6}>
               <Typography variant="h6" className={classes.title}>
                 Your projects
               </Typography>
-              <FormGroup row>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
-                  }
-                  label="Enable dense"
-                />
-              </FormGroup>
+              <Box my={1}>
+                <Search/>
+              </Box>
               <div className={classes.demo}>
-                <List dense={dense}>
+                <List>
                   {generate(
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar>
-                          <FolderIcon />
+                          <CodeIcon />
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -94,6 +101,13 @@ export default function InteractiveList() {
                     </ListItem>,
                   )}
                 </List>
+                <TablePagination
+                  component="nav"
+                  page={0}
+                  rowsPerPage={10}
+                  count={100}
+                  onChangePage={(value) => { console.log(value); }}
+                />
               </div>
             </Grid>
           </Grid>
