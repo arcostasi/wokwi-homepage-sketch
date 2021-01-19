@@ -9,7 +9,13 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import MenuAppBar from '../src/Menu';
+import Link from '../src/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,17 +33,22 @@ const useStyles = makeStyles((theme) => ({
   title: {
     margin: theme.spacing(4, 0, 2),
   },
-  titleBar: {
+  titleBarTop: {
     background:
       'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+      'rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)',
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)',
   },
   img: {
     width: '100%',
   },
   icon: {
     color: 'white',
-    padding: 20
+    margin: 5
   },
 }));
 
@@ -118,6 +129,15 @@ const itemData = [
 
 export default function AdvancedGridList() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Container maxWidth="xl">
@@ -126,23 +146,71 @@ export default function AdvancedGridList() {
         <div className={classes.root}>
           <GridList spacing={1} className={classes.gridList}>
             {itemData.map((item) => (
-              <GridListTile key={item.img} cols={item.featured ? 2 : 1} rows={item.featured ? 2 : 1}>
+              <GridListTile key={item.img}
+                cols={item.featured ? 2 : 1}
+                rows={item.featured ? 2 : 1}>
                 <a href={item.link}>
                   <img src={item.img} alt={item.title} className={classes.img} />
                 </a>
                 <GridListTileBar
-                  title={item.updated}
+                  title={item.title}
                   titlePosition="top"
                   actionIcon={
-                    <IconButton aria-label="favorite" className={classes.icon}>
-                      <StyledBadge badgeContent={item.likes} color="secondary">
+                    <IconButton
+                      aria-label="favorite"
+                      className={classes.icon}>
+                      <StyledBadge
+                        badgeContent={item.likes}
+                        color="secondary">
                         <FavoriteIcon />
                       </StyledBadge>
                     </IconButton>
                   }
                   actionPosition="right"
+                  className={classes.titleBarTop}
+                />
+                <GridListTileBar
+                  title={item.updated}
+                  titlePosition="bottom"
+                  actionIcon={
+                    <IconButton
+                      aria-label="more"
+                      className={classes.icon}
+                      aria-controls="more-menu"
+                      aria-haspopup="true"
+                      onClick={handleClick}>
+                      <MoreIcon />
+                    </IconButton>
+                  }
+                  actionPosition="right"
                   className={classes.titleBar}
                 />
+                <Menu
+                  id="more-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <EditIcon /><Box mx={2}>
+                    <Link style={{
+                        textDecoration: 'none',
+                        color: 'inherit'
+                      }}
+                      href="#rename">Rename
+                    </Link></Box>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <DeleteIcon /><Box mx={2}>
+                    <Link style={{
+                        textDecoration: 'none',
+                        color: 'inherit'
+                      }}
+                      href="#delete">Delete
+                    </Link></Box>
+                  </MenuItem>
+                </Menu>
               </GridListTile>
             ))}
           </GridList>
