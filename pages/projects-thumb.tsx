@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   gridList: {
-    width: 640,
+    width: 600,
     // Promote the list into his own layer on Chrome.
     // This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
       'rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)',
   },
   img: {
-    width: '100%',
+    height: '100%',
   },
   icon: {
     color: 'white',
@@ -63,16 +63,16 @@ const StyledBadge = withStyles((theme) => ({
 
 const itemData = [
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/286426178529526285/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/286426178529526285/thumbnail.jpg?tile&t=1611039217700',
     link: 'https://wokwi.com/arduino/projects/286426178529526285',
     title: 'bumpmap16x16 Heart.ino',
     author: '@ldirko',
-    updated: 'about 6 hours ago',
+    updated: 'about 16 hours ago',
     likes: 4,
-    featured: true,
+    featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/287332871040926216/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/287332871040926216/thumbnail.jpg?tile&t=1610837001558',
     link: 'https://wokwi.com/arduino/projects/287332871040926216',
     title: 'Sample - Traffic light with rings.ino',
     author: '@',
@@ -81,7 +81,16 @@ const itemData = [
     featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/287605854602002957/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/287302452979433992/thumbnail.jpg?tile&t=1610832769871',
+    link: 'https://wokwi-new-git-new-project-page.wokwi.vercel.app/arduino/projects/287302452979433992',
+    title: 'rings1629_Sol.ino',
+    author: '@',
+    updated: '3 days ago',
+    likes: 2,
+    featured: false,
+  },
+  {
+    img: 'https://thumbnails.wokwi.workers.dev/projects/287605854602002957/thumbnail.jpg?tile&t=1610573434610',
     link: 'https://wokwi.com/arduino/projects/287605854602002957',
     title: 'clokwi_32x32_fire.ino',
     author: '@',
@@ -90,7 +99,7 @@ const itemData = [
     featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/287735624539046412/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/287735624539046412/thumbnail.jpg?tile&t=1610664924924',
     link: 'https://wokwi.com/arduino/projects/287735624539046412',
     title: 'DiscoStrobe.ino',
     author: '@',
@@ -99,7 +108,7 @@ const itemData = [
     featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/287153869183517197/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/287153869183517197/thumbnail.jpg?tile&t=1610124446723',
     link: 'https://wokwi.com/arduino/projects/287153869183517197',
     title: 'led-strip-16.ino',
     author: '@arcostasi',
@@ -108,7 +117,7 @@ const itemData = [
     featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/286806448514531852/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/286806448514531852/thumbnail.jpg?tile&t=1610118810351',
     link: 'https://wokwi.com/arduino/projects/286806448514531852',
     title: 'ds1307.ino',
     author: '@',
@@ -117,7 +126,7 @@ const itemData = [
     featured: false,
   },
   {
-    img: 'https://thumbnails.wokwi.workers.dev/projects/286987991492067852/thumbnail.jpg',
+    img: 'https://thumbnails.wokwi.workers.dev/projects/286987991492067852/thumbnail.jpg?tile&t=1609951926462',
     link: 'https://wokwi.com/arduino/projects/286987991492067852',
     title: 'neopixel-ring.ino',
     author: '@',
